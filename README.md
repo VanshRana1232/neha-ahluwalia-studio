@@ -1,6 +1,6 @@
 # Neha Ahluwalia Artistry — Luxury Salon Website
 
-> A full-stack, image-free luxury website built for a verified bridal makeup artist and beauty influencer based in Kurukshetra, Haryana — featuring an online booking system, admin dashboard, and automated notifications.
+> A full-stack luxury website built for a verified bridal makeup artist and beauty influencer based in Kurukshetra, Haryana — featuring an online booking system, admin dashboard, and automated notifications.
 
 ---
 
@@ -11,7 +11,7 @@
 
 ## ✨ Features
 
-- **Premium UI** — Zero stock images, pure CSS design with gold luxury aesthetic
+- **Premium UI** — pure CSS design with gold luxury aesthetic
 - **Online Booking Form** — Service selection, date & time picker, client details
 - **SQLite Database** — Stores all bookings and contact enquiries persistently
 - **Email Notifications** — Auto email to studio on new booking + confirmation to client
