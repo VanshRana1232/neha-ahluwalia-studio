@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — Neha Ahluwalia Artistry</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-light:#E8D5A3;--cream:#FAF6EF;--deep:#0D0B09;--charcoal:#1A1714;--mid:#2E2A25;--danger:#e05555;--success:#55c57a;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--deep);color:var(--cream);font-family:'Jost',sans-serif;font-weight:300;min-height:100vh;}
+/* LOGIN */
+.login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--deep);position:relative;}
+.login-screen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,168,76,.05) 0%,transparent 70%);}
+.login-box{background:var(--charcoal);border:1px solid rgba(201,168,76,.2);padding:60px 50px;width:100%;max-width:420px;position:relative;z-index:1;}
+.login-logo{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;letter-spacing:4px;color:var(--gold-light);text-transform:uppercase;margin-bottom:8px;}
+.login-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(250,246,239,.35);margin-bottom:40px;}
+.login-box input{width:100%;background:var(--deep);border:1px solid rgba(201,168,76,.2);color:var(--cream);padding:14px 18px;font-family:'Jost',sans-serif;font-size:13px;outline:none;transition:border-color .3s;margin-bottom:16px;}
+.login-box input:focus{border-color:var(--gold);}
+.login-btn{width:100%;background:var(--gold);color:var(--deep);border:none;padding:16px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:background .3s;}
+.login-btn:hover{background:var(--gold-light);}
+.login-err{font-size:12px;color:var(--danger);margin-top:12px;text-align:center;display:none;}
+/* DASHBOARD */
+.dashboard{display:none;}
+/* SIDEBAR */
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:260px;background:var(--charcoal);border-right:1px solid rgba(201,168,76,.1);display:flex;flex-direction:column;z-index:10;}
+.sidebar-logo{padding:30px 28px 24px;border-bottom:1px solid rgba(201,168,76,.1);}
+.sidebar-logo span{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;letter-spacing:3px;color:var(--gold-light);text-transform:uppercase;display:block;}
+.sidebar-logo small{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(250,246,239,.3);}
+.sidebar-nav{flex:1;padding:20px 0;}
+.nav-item{display:flex;align-items:center;gap:14px;padding:14px 28px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(250,246,239,.5);cursor:pointer;transition:all .25s;border-left:2px solid transparent;}
+.nav-item:hover{color:var(--cream);background:rgba(201,168,76,.05);}
+.nav-item.active{color:var(--gold-light);background:rgba(201,168,76,.07);border-left-color:var(--gold);}
+.nav-item .icon{font-size:16px;width:20px;text-align:center;}
+.nav-badge{margin-left:auto;background:var(--gold);color:var(--deep);font-size:9px;font-weight:500;padding:2px 7px;border-radius:10px;}
+.sidebar-footer{padding:20px 28px;border-top:1px solid rgba(201,168,76,.1);}
+.logout-btn{width:100%;background:transparent;border:1px solid rgba(201,168,76,.2);color:rgba(250,246,239,.5);padding:10px;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.logout-btn:hover{border-color:var(--danger);color:var(--danger);}
+/* MAIN */
+.main{margin-left:260px;padding:40px 48px;min-height:100vh;}
+.page-header{margin-bottom:40px;}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--cream);}
+.page-title em{font-style:italic;color:var(--gold-light);}
+.page-sub{font-size:12px;color:rgba(250,246,239,.4);margin-top:6px;letter-spacing:1px;}
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:40px;}
+.stat-card{background:var(--charcoal);border:1px solid rgba(201,168,76,.1);padding:24px 20px;transition:border-color .3s;}
+.stat-card:hover{border-color:rgba(201,168,76,.3);}
+.stat-card-num{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--gold);line-height:1;}
+.stat-card-label{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(250,246,239,.4);margin-top:6px;}
+/* TABS */
+.tabs{display:flex;gap:0;border-bottom:1px solid rgba(201,168,76,.15);margin-bottom:30px;}
+.tab{padding:12px 24px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(250,246,239,.4);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .3s;}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.tab:hover:not(.active){color:var(--cream);}
+/* FILTER */
+.filter-bar{display:flex;gap:10px;margin-bottom:24px;align-items:center;}
+.filter-btn{padding:8px 18px;font-size:9px;letter-spacing:2px;text-transform:uppercase;border:1px solid rgba(201,168,76,.2);background:transparent;color:rgba(250,246,239,.5);cursor:pointer;transition:all .25s;}
+.filter-btn.active,.filter-btn:hover{background:rgba(201,168,76,.1);border-color:var(--gold);color:var(--gold-light);}
+/* TABLE */
+.table-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;}
+thead tr{border-bottom:1px solid rgba(201,168,76,.15);}
+th{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(250,246,239,.35);padding:12px 16px;text-align:left;font-weight:400;}
+tbody tr{border-bottom:1px solid rgba(255,255,255,.04);transition:background .2s;}
+tbody tr:hover{background:rgba(201,168,76,.04);}
+td{padding:14px 16px;font-size:12px;color:rgba(250,246,239,.7);vertical-align:middle;}
+.status-badge{display:inline-block;padding:4px 10px;font-size:8px;letter-spacing:2px;text-transform:uppercase;border-radius:0;}
+.status-pending{background:rgba(201,168,76,.15);color:var(--gold);}
+.status-confirmed{background:rgba(85,197,122,.15);color:#55c57a;}
+.status-completed{background:rgba(100,149,237,.15);color:#6495ed;}
+.status-cancelled{background:rgba(224,85,85,.15);color:var(--danger);}
+.action-btn{padding:5px 12px;font-size:8px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .25s;margin-right:6px;}
+.action-confirm{background:rgba(85,197,122,.2);color:#55c57a;border:1px solid rgba(85,197,122,.3);}
+.action-confirm:hover{background:rgba(85,197,122,.35);}
+.action-cancel{background:rgba(224,85,85,.2);color:var(--danger);border:1px solid rgba(224,85,85,.3);}
+.action-cancel:hover{background:rgba(224,85,85,.35);}
+.action-complete{background:rgba(100,149,237,.2);color:#6495ed;border:1px solid rgba(100,149,237,.3);}
+.action-complete:hover{background:rgba(100,149,237,.35);}
+.action-delete{background:rgba(150,150,150,.15);color:rgba(250,246,239,.4);border:1px solid rgba(150,150,150,.2);}
+.action-delete:hover{background:rgba(224,85,85,.2);color:var(--danger);}
+.empty-state{text-align:center;padding:60px;color:rgba(250,246,239,.3);font-size:14px;}
+.empty-state .big{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:rgba(201,168,76,.2);display:block;margin-bottom:12px;}
+.loading{text-align:center;padding:40px;color:rgba(250,246,239,.3);font-size:12px;letter-spacing:2px;text-transform:uppercase;}
+/* TOAST */
+.toast{position:fixed;bottom:30px;right:30px;background:var(--charcoal);border:1px solid rgba(201,168,76,.3);padding:16px 24px;font-size:12px;color:var(--gold-light);z-index:1000;transform:translateY(100px);opacity:0;transition:all .35s;max-width:320px;}
+.toast.show{transform:translateY(0);opacity:1;}
+/* PAGE SECTIONS */
+.page-section{display:none;}
+.page-section.active{display:block;}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">Neha Ahluwalia</div>
+    <div class="login-sub">Admin Panel</div>
+    <input type="password" id="adminPass" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')login()">
+    <button class="login-btn" onclick="login()">Access Dashboard</button>
+    <div class="login-err" id="loginErr">Incorrect password. Please try again.</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <span>Neha Ahluwalia</span>
+      <small>Admin Panel</small>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-item active" onclick="showPage('overview')"><span class="icon">◈</span> Overview</div>
+      <div class="nav-item" onclick="showPage('bookings')" id="navBookings"><span class="icon">📅</span> Bookings <span class="nav-badge" id="pendingBadge" style="display:none">0</span></div>
+      <div class="nav-item" onclick="showPage('messages')"><span class="icon">✉</span> Messages</div>
+    </nav>
+    <div class="sidebar-footer">
+      <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(250,246,239,.25);margin-bottom:12px;">Default password: admin@neha2026</div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- OVERVIEW -->
+    <div class="page-section active" id="page-overview">
+      <div class="page-header">
+        <div class="page-title">Good Day, <em>Admin</em></div>
+        <div class="page-sub" id="dateDisplay"></div>
+      </div>
+      <div class="stats-row" id="statsRow">
+        <div class="stat-card"><div class="stat-card-num" id="st-total">—</div><div class="stat-card-label">Total Bookings</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="st-pending">—</div><div class="stat-card-label">Pending</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="st-confirmed">—</div><div class="stat-card-label">Confirmed</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="st-completed">—</div><div class="stat-card-label">Completed</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="st-messages">—</div><div class="stat-card-label">Messages</div></div>
+      </div>
+      <div style="margin-bottom:20px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);">Recent Bookings</div>
+      <div id="recentBookings"><div class="loading">Loading…</div></div>
+    </div>
+
+    <!-- BOOKINGS -->
+    <div class="page-section" id="page-bookings">
+      <div class="page-header">
+        <div class="page-title">Manage <em>Bookings</em></div>
+        <div class="page-sub">View and update all appointment requests</div>
+      </div>
+      <div class="filter-bar">
+        <div class="filter-btn active" onclick="filterBookings('all',this)">All</div>
+        <div class="filter-btn" onclick="filterBookings('pending',this)">Pending</div>
+        <div class="filter-btn" onclick="filterBookings('confirmed',this)">Confirmed</div>
+        <div class="filter-btn" onclick="filterBookings('completed',this)">Completed</div>
+        <div class="filter-btn" onclick="filterBookings('cancelled',this)">Cancelled</div>
+        <div style="margin-left:auto;cursor:pointer;font-size:10px;letter-spacing:2px;color:rgba(250,246,239,.4);" onclick="loadBookings()">↻ Refresh</div>
+      </div>
+      <div class="table-wrap" id="bookingsTable"><div class="loading">Loading…</div></div>
+    </div>
+
+    <!-- MESSAGES -->
+    <div class="page-section" id="page-messages">
+      <div class="page-header">
+        <div class="page-title">Contact <em>Messages</em></div>
+        <div class="page-sub">Enquiries and messages from clients</div>
+      </div>
+      <div class="table-wrap" id="messagesTable"><div class="loading">Loading…</div></div>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /dashboard -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = '';
+
+async function api(path, method='GET', body=null){
+  const opts = {method, headers:{'Content-Type':'application/json'}, credentials:'include'};
+  if(body) opts.body = JSON.stringify(body);
+  const r = await fetch(API+path, opts);
+  return r.json();
+}
+
+async function login(){
+  const pw = document.getElementById('adminPass').value;
+  const err = document.getElementById('loginErr');
+  const res = await api('/api/admin/login','POST',{password:pw});
+  if(res.ok){
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+    initDashboard();
+  } else {
+    err.style.display='block';
+    setTimeout(()=>err.style.display='none', 3000);
+  }
+}
+
+async function logout(){
+  await api('/api/admin/logout','POST');
+  location.reload();
+}
+
+function showPage(name){
+  document.querySelectorAll('.page-section').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  event.currentTarget.classList.add('active');
+  if(name==='bookings') loadBookings();
+  if(name==='messages') loadMessages();
+}
+
+function toast(msg, duration=3000){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), duration);
+}
+
+function statusBadge(s){
+  return `<span class="status-badge status-${s}">${s}</span>`;
+}
+
+function formatDate(d){ return d ? d.replace('T',' ').slice(0,16) : '—'; }
+
+async function initDashboard(){
+  document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  const res = await api('/api/admin/stats');
+  if(!res.ok) return;
+  const s = res.stats;
+  document.getElementById('st-total').textContent = s.total;
+  document.getElementById('st-pending').textContent = s.pending;
+  document.getElementById('st-confirmed').textContent = s.confirmed;
+  document.getElementById('st-completed').textContent = s.completed;
+  document.getElementById('st-messages').textContent = s.messages;
+  if(s.pending>0){
+    const b=document.getElementById('pendingBadge');
+    b.textContent=s.pending; b.style.display='inline-block';
+  }
+  // Recent bookings
+  const rb = document.getElementById('recentBookings');
+  if(!res.recent||res.recent.length===0){
+    rb.innerHTML='<div class="empty-state"><span class="big">◈</span>No bookings yet</div>';
+    return;
+  }
+  rb.innerHTML = renderBookingTable(res.recent, false);
+}
+
+let currentFilter = 'all';
+async function loadBookings(status){
+  if(status) currentFilter=status;
+  const res = await api('/api/admin/bookings?status='+currentFilter);
+  const el = document.getElementById('bookingsTable');
+  if(!res.ok){ el.innerHTML='<div class="empty-state">Error loading bookings</div>'; return; }
+  if(!res.bookings.length){ el.innerHTML='<div class="empty-state"><span class="big">📅</span>No bookings found</div>'; return; }
+  el.innerHTML = renderBookingTable(res.bookings, true);
+}
+
+function filterBookings(status, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  loadBookings(status);
+}
+
+function renderBookingTable(bookings, showActions){
+  return `<table>
+    <thead><tr>
+      <th>ID</th><th>Name</th><th>Phone</th><th>Service</th><th>Date</th><th>Time</th><th>Status</th><th>Received</th>${showActions?'<th>Actions</th>':''}
+    </tr></thead>
+    <tbody>${bookings.map(b=>`<tr id="row-${b.id}">
+      <td style="color:rgba(250,246,239,.3);font-size:11px;">#${b.id}</td>
+      <td><strong style="color:var(--cream);font-weight:400;">${b.name}</strong>${b.email?`<br><small style="color:rgba(250,246,239,.35);font-size:10px;">${b.email}</small>`:''}</td>
+      <td><a href="tel:${b.phone}" style="color:var(--gold);text-decoration:none;">${b.phone}</a></td>
+      <td>${b.service}</td>
+      <td>${b.date}</td>
+      <td>${b.time_slot}</td>
+      <td>${statusBadge(b.status)}</td>
+      <td style="font-size:11px;color:rgba(250,246,239,.35);">${formatDate(b.created_at)}</td>
+      ${showActions?`<td>
+        ${b.status==='pending'?`<button class="action-btn action-confirm" onclick="updateBooking(${b.id},'confirmed')">Confirm</button>`:''}
+        ${b.status==='confirmed'?`<button class="action-btn action-complete" onclick="updateBooking(${b.id},'completed')">Complete</button>`:''}
+        ${b.status!=='cancelled'&&b.status!=='completed'?`<button class="action-btn action-cancel" onclick="updateBooking(${b.id},'cancelled')">Cancel</button>`:''}
+        <button class="action-btn action-delete" onclick="deleteBooking(${b.id})">Del</button>
+      </td>`:''}
+    </tr>`).join('')}</tbody>
+  </table>`;
+}
+
+async function updateBooking(id, status){
+  const res = await api(`/api/admin/bookings/${id}`,'PATCH',{status});
+  if(res.ok){
+    toast(`Booking #${id} marked as ${status}${status==='confirmed'?' — WhatsApp notification sent!':''}`);
+    loadBookings();
+    initDashboard();
+  } else toast('Failed to update booking');
+}
+
+async function deleteBooking(id){
+  if(!confirm(`Delete booking #${id}? This cannot be undone.`)) return;
+  const res = await api(`/api/admin/bookings/${id}`,'DELETE');
+  if(res.ok){ toast('Booking deleted.'); loadBookings(); initDashboard(); }
+  else toast('Failed to delete.');
+}
+
+async function loadMessages(){
+  const res = await api('/api/admin/contacts');
+  const el = document.getElementById('messagesTable');
+  if(!res.ok){ el.innerHTML='<div class="empty-state">Error loading messages</div>'; return; }
+  if(!res.contacts.length){ el.innerHTML='<div class="empty-state"><span class="big">✉</span>No messages yet</div>'; return; }
+  el.innerHTML = `<table>
+    <thead><tr><th>ID</th><th>Name</th><th>Phone</th><th>Email</th><th>Message</th><th>Received</th></tr></thead>
+    <tbody>${res.contacts.map(c=>`<tr>
+      <td style="color:rgba(250,246,239,.3);font-size:11px;">#${c.id}</td>
+      <td><strong style="color:var(--cream);font-weight:400;">${c.name}</strong></td>
+      <td><a href="tel:${c.phone}" style="color:var(--gold);text-decoration:none;">${c.phone}</a></td>
+      <td style="font-size:11px;">${c.email||'—'}</td>
+      <td style="max-width:300px;">${c.message}</td>
+      <td style="font-size:11px;color:rgba(250,246,239,.35);">${formatDate(c.created_at)}</td>
+    </tr>`).join('')}</tbody>
+  </table>`;
+}
+</script>
+</body>
+</html>
