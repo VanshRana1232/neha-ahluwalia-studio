@@ -3,359 +3,302 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neha Ahluwalia — Luxury Makeup Studio &amp; Salon</title>
+<title>Neha Ahluwalia — Luxury Makeup Studio & Salon</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --gold:#C9A84C;--gold-light:#E8D5A3;--gold-mid:#D4B566;--gold-glow:rgba(201,168,76,0.18);
+  --gold:#C9A84C;--gold-light:#E8D5A3;--gold-mid:#D4B566;
   --cream:#FAF6EF;--deep:#080604;--charcoal:#111009;--mid:#1A1712;--panel:#201D15;
-  --muted:rgba(250,246,239,0.5);--dim:rgba(250,246,239,0.28);--faint:rgba(250,246,239,0.12);
+  --muted:rgba(250,246,239,0.52);--dim:rgba(250,246,239,0.28);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--deep);color:var(--cream);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
-
-/* CURSOR */
-.cur{position:fixed;width:5px;height:5px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
-.cur-ring{position:fixed;width:26px;height:26px;border:1px solid rgba(201,168,76,0.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .16s ease;}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:72px;padding:0 64px;display:flex;align-items:center;justify-content:space-between;transition:all .5s ease;}
+body{background:var(--deep);color:var(--cream);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,6,4,0);transition:background .4s;}
 nav.solid{background:rgba(8,6,4,.97);border-bottom:1px solid rgba(201,168,76,.1);}
-nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,6,4,.85),transparent);pointer-events:none;}
-nav.solid::before{display:none;}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;letter-spacing:5px;color:var(--gold-light);text-transform:uppercase;text-decoration:none;position:relative;z-index:1;}
-.nav-links{display:flex;gap:38px;list-style:none;position:relative;z-index:1;}
-.nav-links a{font-size:9.5px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(250,246,239,.55);text-decoration:none;transition:color .3s;position:relative;padding-bottom:4px;}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .4s ease;}
-.nav-links a:hover{color:var(--gold-light);}
-.nav-links a:hover::after{width:100%;}
-.nav-cta{position:relative;z-index:1;font-size:8.5px;letter-spacing:3px;text-transform:uppercase;color:var(--deep);background:var(--gold);padding:12px 28px;text-decoration:none;overflow:hidden;display:inline-block;transition:all .35s;}
-.nav-cta::before{content:'';position:absolute;inset:0;background:var(--gold-light);transform:translateX(-101%);transition:transform .35s ease;}
-.nav-cta span{position:relative;z-index:1;}
-.nav-cta:hover::before{transform:translateX(0);}
-
-/* HERO — pure design, no images */
-.hero{height:100vh;min-height:720px;position:relative;display:flex;align-items:center;overflow:hidden;background:var(--deep);}
-/* layered radial glows */
-.hero::before{content:'';position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 55% 70% at 75% 40%, rgba(201,168,76,.07) 0%, transparent 65%),
-    radial-gradient(ellipse 35% 50% at 15% 80%, rgba(201,168,76,.04) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,.03) 0%, transparent 70%);
-}
-/* fine grid */
-.hero::after{content:'';position:absolute;inset:0;
-  background-image:linear-gradient(rgba(201,168,76,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.028) 1px,transparent 1px);
-  background-size:90px 90px;
-}
-/* decorative vertical lines */
-.hero-vlines{position:absolute;inset:0;pointer-events:none;}
-.hero-vlines span{position:absolute;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent 0%,rgba(201,168,76,.12) 25%,rgba(201,168,76,.12) 75%,transparent 100%);}
-.hero-vlines span:nth-child(1){left:33.33%;}
-.hero-vlines span:nth-child(2){left:66.66%;}
-
-/* big decorative NA monogram */
-.hero-monogram{position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:480px;font-weight:600;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.055);line-height:1;pointer-events:none;user-select:none;letter-spacing:-20px;}
-
-.hero-content{position:relative;z-index:10;padding:0 72px;max-width:820px;}
-.hero-eyebrow{font-size:8.5px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:30px;display:flex;align-items:center;gap:18px;opacity:0;animation:su .9s .4s ease forwards;}
-.hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold);flex-shrink:0;}
-.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,8vw,116px);font-weight:300;line-height:.9;letter-spacing:-2px;color:var(--cream);opacity:0;animation:su .9s .55s ease forwards;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:300;letter-spacing:3px;color:var(--gold-light);text-transform:uppercase;text-decoration:none;line-height:1.2;}
+.nav-logo span{display:block;font-size:10px;letter-spacing:3px;color:var(--dim);}
+.nav-menu{display:none;}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.nav-book{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--deep);background:var(--gold);padding:9px 14px;text-decoration:none;display:none;}
+.hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.hamburger span{width:22px;height:1px;background:var(--gold-light);transition:all .3s;display:block;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px);}
+.mobile-drawer{position:fixed;top:60px;left:0;right:0;bottom:0;background:rgba(8,6,4,.98);z-index:190;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:28px;transform:translateY(-110%);transition:transform .4s cubic-bezier(.4,0,.2,1);pointer-events:none;}
+.mobile-drawer.open{transform:translateY(0);pointer-events:all;}
+.mobile-drawer a{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;letter-spacing:3px;color:rgba(250,246,239,.6);text-decoration:none;transition:color .3s;}
+.mobile-drawer a:active{color:var(--gold-light);}
+.mobile-drawer .md-book{font-family:'Jost',sans-serif;font-size:8.5px;letter-spacing:3px;text-transform:uppercase;color:var(--deep);background:var(--gold);padding:16px 36px;margin-top:8px;}
+.hero{min-height:100svh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--deep);padding:80px 24px 44px;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 100% 70% at 50% 20%,rgba(201,168,76,.09) 0%,transparent 65%),radial-gradient(ellipse 60% 50% at 10% 90%,rgba(201,168,76,.04) 0%,transparent 60%);}
+.hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.022) 1px,transparent 1px);background-size:50px 50px;}
+.hero-mono{position:absolute;right:-40px;top:50%;transform:translateY(-55%);font-family:'Cormorant Garamond',serif;font-size:min(55vw,300px);font-weight:600;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.04);line-height:1;pointer-events:none;user-select:none;}
+.hero-content{position:relative;z-index:2;}
+.hero-eyebrow{font-size:7.5px;letter-spacing:4.5px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:12px;}
+.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--gold);flex-shrink:0;}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(58px,16vw,96px);font-weight:300;line-height:.88;letter-spacing:-1px;color:var(--cream);margin-bottom:20px;}
 .hero-h1 em{font-style:italic;color:var(--gold-light);display:block;}
-.hero-sub{font-size:12px;letter-spacing:2.5px;line-height:2.1;color:var(--muted);margin:32px 0 54px;max-width:380px;opacity:0;animation:su .9s .7s ease forwards;}
-.hero-ctas{display:flex;gap:20px;align-items:center;opacity:0;animation:su .9s .85s ease forwards;}
-@keyframes su{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
-
-.btn-main{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;color:var(--deep);background:var(--gold);padding:18px 48px;text-decoration:none;display:inline-block;position:relative;overflow:hidden;}
-.btn-main::before{content:'';position:absolute;inset:0;background:var(--gold-light);transform:translateX(-101%);transition:transform .38s ease;}
-.btn-main:hover::before{transform:translateX(0);}
-.btn-main span{position:relative;z-index:1;}
-.btn-ghost{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(250,246,239,.6);text-decoration:none;display:flex;align-items:center;gap:12px;transition:color .3s;}
-.btn-ghost .a{transition:transform .3s;}
-.btn-ghost:hover{color:var(--gold-light);}
-.btn-ghost:hover .a{transform:translateX(6px);}
-
-/* floating stats — right side hero */
-.hero-stats{position:absolute;right:72px;bottom:90px;z-index:10;opacity:0;animation:su .9s 1s ease forwards;}
-.hero-stats-inner{display:flex;flex-direction:column;border:1px solid rgba(201,168,76,.12);background:rgba(8,6,4,.7);backdrop-filter:blur(8px);}
-.hstat{padding:22px 30px;border-bottom:1px solid rgba(201,168,76,.08);display:flex;flex-direction:column;gap:6px;}
-.hstat:last-child{border-bottom:none;}
-.hstat-n{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--gold);line-height:1;}
-.hstat-l{font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);}
-
-/* scroll indicator */
-.hero-scroll{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:fadeIn 1s 1.2s ease forwards;}
-@keyframes fadeIn{to{opacity:1;}}
-.hero-scroll-line{width:1px;height:52px;background:linear-gradient(to bottom,rgba(201,168,76,.65),transparent);animation:lineDrop 2.4s ease-in-out infinite;}
-@keyframes lineDrop{0%{transform-origin:top;transform:scaleY(0);opacity:0;}50%{opacity:1;}100%{transform-origin:bottom;transform:scaleY(1);opacity:0;}}
-.hero-scroll span{font-size:7px;letter-spacing:4px;text-transform:uppercase;color:rgba(201,168,76,.38);}
-
-/* TICKER */
-.ticker{border-top:1px solid rgba(201,168,76,.14);border-bottom:1px solid rgba(201,168,76,.14);background:rgba(201,168,76,.025);overflow:hidden;padding:15px 0;}
-.ticker-track{display:flex;animation:tick 32s linear infinite;white-space:nowrap;}
+.hero-sub{font-size:11px;letter-spacing:1.5px;line-height:2;color:var(--muted);margin-bottom:32px;}
+.hero-ctas{display:flex;flex-direction:column;gap:10px;}
+.btn-main{font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:var(--deep);background:var(--gold);padding:17px 20px;text-decoration:none;display:block;text-align:center;transition:background .3s;}
+.btn-main:active{background:var(--gold-light);}
+.btn-ghost{font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(250,246,239,.6);text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;padding:16px 20px;border:1px solid rgba(201,168,76,.25);transition:all .3s;}
+.btn-ghost:active{border-color:rgba(201,168,76,.6);color:var(--gold-light);}
+.hero-stats{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);margin-top:36px;border:1px solid rgba(201,168,76,.1);background:rgba(201,168,76,.05);}
+.hstat{padding:18px 8px;text-align:center;border-right:1px solid rgba(201,168,76,.1);}
+.hstat:last-child{border-right:none;}
+.hstat-n{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--gold);line-height:1;display:block;}
+.hstat-l{font-size:6.5px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-top:5px;display:block;}
+.ticker{border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1);background:rgba(201,168,76,.02);overflow:hidden;padding:13px 0;}
+.ticker-track{display:flex;animation:tick 26s linear infinite;white-space:nowrap;}
 @keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.ti{font-family:'Cormorant Garamond',serif;font-size:13.5px;font-style:italic;letter-spacing:3px;color:var(--gold);padding:0 44px;flex-shrink:0;}
-.ts{color:rgba(201,168,76,.3);}
-
-/* SHARED */
-.eyebrow{font-size:8px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:18px;}
-.eyebrow::before{content:'';width:26px;height:1px;background:var(--gold);flex-shrink:0;}
-.sh{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4.2vw,60px);font-weight:300;line-height:1.05;color:var(--cream);}
+.ti{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;letter-spacing:2.5px;color:var(--gold);padding:0 24px;flex-shrink:0;}
+.ts{color:rgba(201,168,76,.3);font-style:normal;}
+.eyebrow{font-size:7.5px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--gold);flex-shrink:0;}
+.sh{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,8vw,48px);font-weight:300;line-height:1.05;color:var(--cream);margin-bottom:20px;}
 .sh em{font-style:italic;color:var(--gold-light);}
-.gold-line{height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:.2;}
-
-/* reveal */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .85s ease,transform .85s ease;}
+.gold-line{height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:.15;}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .75s ease,transform .75s ease;}
 .rv.in{opacity:1;transform:translateY(0);}
-.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}.d5{transition-delay:.5s;}
-
-/* ── ABOUT ── */
-.about{background:var(--charcoal);padding:130px 72px;position:relative;overflow:hidden;}
-.about-deco{position:absolute;right:-50px;top:50%;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:420px;font-weight:600;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.05);pointer-events:none;user-select:none;letter-spacing:-15px;}
-.about::before{content:'';position:absolute;top:0;right:320px;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(201,168,76,.1) 30%,rgba(201,168,76,.1) 70%,transparent);}
-
-.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:start;position:relative;z-index:1;}
-.about-left p{font-size:14.5px;line-height:1.95;color:var(--muted);margin-bottom:20px;}
-.about-badges{display:flex;flex-wrap:wrap;gap:9px;margin-top:34px;}
-.badge{font-size:7.5px;letter-spacing:3px;text-transform:uppercase;padding:9px 18px;border:1px solid rgba(201,168,76,.2);color:var(--gold);transition:all .35s;cursor:default;}
-.badge:hover{background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.5);}
-
-.about-right{display:flex;flex-direction:column;gap:0;}
-.astat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(201,168,76,.07);}
-.astat{background:var(--charcoal);padding:36px 30px;position:relative;overflow:hidden;transition:background .4s;}
-.astat::after{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:var(--gold);transition:height .5s ease;}
-.astat:hover{background:var(--mid);}
-.astat:hover::after{height:100%;}
-.astat-n{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;color:var(--gold);line-height:1;}
-.astat-l{font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);margin-top:7px;}
-.astat-s{font-size:11px;color:rgba(250,246,239,.28);margin-top:4px;}
-
-.about-quote{background:var(--gold);padding:40px 36px;position:relative;overflow:hidden;margin-top:1px;}
-.about-quote::before{content:'“';position:absolute;top:-18px;left:16px;font-family:'Cormorant Garamond',serif;font-size:140px;color:rgba(8,6,4,.12);line-height:1;pointer-events:none;}
-.about-quote p{font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;font-weight:300;color:var(--deep);line-height:1.65;position:relative;z-index:1;}
-.about-quote cite{font-family:'Jost',sans-serif;font-style:normal;font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:rgba(8,6,4,.5);margin-top:14px;display:block;}
-
-/* ── SERVICES ── */
-.services{background:var(--deep);padding:130px 72px;position:relative;}
-/* subtle dot grid */
-.services::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(201,168,76,.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;}
-.svc-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:72px;position:relative;z-index:1;}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.06);position:relative;z-index:1;}
-.svc{background:var(--deep);padding:52px 40px;position:relative;overflow:hidden;transition:background .45s;}
-.svc::before{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:0;transition:opacity .45s;}
-.svc::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.04) 0%,transparent 55%);opacity:0;transition:opacity .45s;}
-.svc:hover{background:var(--charcoal);}
-.svc:hover::before,.svc:hover::after{opacity:1;}
-.svc-num{font-family:'Cormorant Garamond',serif;font-size:68px;font-weight:300;color:rgba(201,168,76,.07);line-height:1;margin-bottom:20px;transition:color .5s;}
-.svc:hover .svc-num{color:rgba(201,168,76,.16);}
-.svc-icon{font-size:22px;margin-bottom:18px;display:block;}
-.svc-name{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:400;color:var(--cream);margin-bottom:14px;}
-.svc-desc{font-size:12px;line-height:1.9;color:rgba(250,246,239,.38);}
-.svc-arr{font-size:13px;color:var(--gold);margin-top:22px;display:inline-block;opacity:0;transform:translateX(-10px);transition:all .4s;}
-.svc:hover .svc-arr{opacity:1;transform:translateX(0);}
-
-/* ── NUMBERS BAND ── */
-.nums{background:var(--panel);padding:80px 72px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--panel);}
-.num-item{padding:52px 40px;text-align:center;border:1px solid rgba(201,168,76,.06);position:relative;overflow:hidden;transition:border-color .4s;}
-.num-item::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 100%,rgba(201,168,76,.06) 0%,transparent 70%);opacity:0;transition:opacity .4s;}
-.num-item:hover{border-color:rgba(201,168,76,.25);}
-.num-item:hover::before{opacity:1;}
-.num-n{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:300;color:var(--gold);line-height:1;}
-.num-l{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--dim);margin-top:10px;}
-
-/* ── SPLIT ── */
-.split{display:grid;grid-template-columns:1fr 1fr;}
-.split-l{background:var(--deep);padding:110px 72px;}
-.split-r{background:var(--gold);padding:110px 72px;position:relative;overflow:hidden;}
-.split-r::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(255,255,255,.1) 0%,transparent 60%);}
-.split-r::after{content:'';position:absolute;bottom:-60px;right:-60px;width:260px;height:260px;border:1px solid rgba(8,6,4,.08);border-radius:50%;}
-.split-r .eyebrow{color:rgba(8,6,4,.5);}
-.split-r .eyebrow::before{background:rgba(8,6,4,.35);}
-.split-r .sh{color:var(--deep);}
-.split-r>p{font-size:13.5px;line-height:1.9;color:rgba(8,6,4,.6);margin-top:8px;}
-
-.hours{margin-top:42px;}
-.hrow{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(201,168,76,.07);font-size:12.5px;}
-.hrow span:first-child{color:rgba(250,246,239,.38);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+.about{background:var(--charcoal);padding:64px 24px;position:relative;overflow:hidden;}
+.about-mono{position:absolute;right:-40px;bottom:-30px;font-family:'Cormorant Garamond',serif;font-size:min(55vw,200px);font-weight:600;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.04);pointer-events:none;user-select:none;line-height:1;}
+.about p{font-size:13.5px;line-height:1.9;color:var(--muted);margin-bottom:16px;}
+.about-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+.badge{font-size:7px;letter-spacing:2px;text-transform:uppercase;padding:8px 12px;border:1px solid rgba(201,168,76,.2);color:var(--gold);}
+.astat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(201,168,76,.07);margin-top:36px;}
+.astat{background:var(--charcoal);padding:24px 16px;position:relative;overflow:hidden;}
+.astat::after{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:var(--gold);transition:height .5s;}
+.astat:active::after{height:100%;}
+.astat-n{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--gold);line-height:1;}
+.astat-l{font-size:7px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-top:6px;}
+.astat-s{font-size:9px;color:rgba(250,246,239,.22);margin-top:3px;}
+.about-quote{background:var(--gold);padding:28px 22px;margin-top:1px;position:relative;overflow:hidden;}
+.about-quote::before{content:'\201C';position:absolute;top:-10px;left:10px;font-family:'Cormorant Garamond',serif;font-size:90px;color:rgba(8,6,4,.12);line-height:1;}
+.about-quote p{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--deep);line-height:1.65;position:relative;z-index:1;}
+.about-quote cite{font-family:'Jost',sans-serif;font-style:normal;font-size:7px;letter-spacing:2px;text-transform:uppercase;color:rgba(8,6,4,.45);margin-top:12px;display:block;}
+.services{background:var(--deep);padding:64px 24px;}
+.svc-grid{display:grid;grid-template-columns:1fr;gap:1px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.06);margin-top:40px;}
+.svc{background:var(--deep);padding:26px 22px;position:relative;overflow:hidden;transition:background .4s;border-bottom:1px solid rgba(201,168,76,.06);}
+.svc:last-child{border-bottom:none;}
+.svc:active{background:var(--charcoal);}
+.svc-top{display:flex;align-items:center;gap:12px;margin-bottom:8px;}
+.svc-num{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:rgba(201,168,76,.12);line-height:1;min-width:36px;}
+.svc-icon{font-size:18px;}
+.svc-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--cream);}
+.svc-desc{font-size:12px;line-height:1.85;color:rgba(250,246,239,.38);padding-left:48px;}
+.nums{background:var(--panel);padding:0;}
+.nums-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(201,168,76,.07);}
+.num-item{background:var(--panel);padding:34px 14px;text-align:center;}
+.num-n{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:var(--gold);line-height:1;display:block;}
+.num-l{font-size:6.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);margin-top:7px;display:block;}
+.hours-sec{background:var(--charcoal);padding:64px 24px;}
+.hours{margin-top:30px;}
+.hrow{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid rgba(201,168,76,.07);font-size:13px;}
+.hrow span:first-child{color:rgba(250,246,239,.45);}
 .hrow span:last-child{color:rgba(250,246,239,.28);}
-.hrow.closed span:last-child{color:rgba(220,80,80,.4);font-style:italic;}
+.hrow.closed span:last-child{color:rgba(220,80,80,.5);font-style:italic;}
 .hrow:last-child{border-bottom:none;}
-
-.whys{margin-top:40px;}
-.why{display:flex;gap:18px;align-items:flex-start;padding:22px 0;border-bottom:1px solid rgba(8,6,4,.1);}
+.why-sec{background:var(--gold);padding:64px 24px;position:relative;overflow:hidden;}
+.why-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(255,255,255,.08) 0%,transparent 55%);}
+.why-sec .eyebrow{color:rgba(8,6,4,.45);}
+.why-sec .eyebrow::before{background:rgba(8,6,4,.25);}
+.why-sec .sh{color:var(--deep);}
+.why-sec>p{font-size:13px;line-height:1.9;color:rgba(8,6,4,.6);margin-bottom:0;}
+.whys{margin-top:30px;}
+.why{display:flex;gap:14px;align-items:flex-start;padding:17px 0;border-bottom:1px solid rgba(8,6,4,.1);}
 .why:last-child{border-bottom:none;}
-.why-ico{width:36px;height:36px;border:1px solid rgba(8,6,4,.2);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--deep);flex-shrink:0;}
-.why-text h4{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--deep);margin-bottom:3px;}
-.why-text p{font-size:11px;color:rgba(8,6,4,.55);line-height:1.6;}
-
-/* ── TESTIMONIALS ── */
-.testi{background:var(--charcoal);padding:130px 72px;text-align:center;position:relative;overflow:hidden;}
-.testi::before{content:'“';position:absolute;top:10px;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:500px;font-weight:600;color:rgba(201,168,76,.025);line-height:1;pointer-events:none;}
-.testi-head{position:relative;z-index:1;margin-bottom:72px;}
-.testi-head .eyebrow{justify-content:center;}
-.testi-head .eyebrow::before{display:none;}
-.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,.07);text-align:left;position:relative;z-index:1;}
-.tcard{background:var(--charcoal);padding:50px 40px;transition:background .3s;position:relative;overflow:hidden;}
-.tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:0;transition:opacity .4s;}
-.tcard:hover{background:var(--mid);}
-.tcard:hover::before{opacity:1;}
-.tcard-stars{color:var(--gold);letter-spacing:4px;font-size:11px;margin-bottom:24px;}
-.tcard-text{font-family:'Cormorant Garamond',serif;font-size:19.5px;font-style:italic;font-weight:300;line-height:1.7;color:rgba(250,246,239,.7);margin-bottom:28px;}
-.tcard-author{font-size:8.5px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
-
-/* ── BOOKING ── */
-.booking{background:var(--deep);padding:140px 72px;text-align:center;position:relative;overflow:hidden;}
-.booking::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 50% 50%,rgba(201,168,76,.055) 0%,transparent 72%);}
-.booking::after{content:'';position:absolute;top:48px;left:48px;right:48px;bottom:48px;border:1px solid rgba(201,168,76,.05);pointer-events:none;}
-.booking-inner{position:relative;z-index:1;max-width:820px;margin:0 auto;}
+.why-ico{width:30px;height:30px;border:1px solid rgba(8,6,4,.2);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--deep);flex-shrink:0;}
+.why-text h4{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:var(--deep);margin-bottom:3px;}
+.why-text p{font-size:11.5px;color:rgba(8,6,4,.55);line-height:1.6;}
+.testi{background:var(--charcoal);padding:64px 24px;}
+.tgrid{display:flex;flex-direction:column;gap:12px;margin-top:40px;}
+.tcard{background:var(--mid);padding:30px 22px;border:1px solid rgba(201,168,76,.07);position:relative;}
+.tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:.4;}
+.tcard-stars{color:var(--gold);letter-spacing:3px;font-size:11px;margin-bottom:16px;}
+.tcard-text{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;font-weight:300;line-height:1.7;color:rgba(250,246,239,.7);margin-bottom:20px;}
+.tcard-author{font-size:7.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);}
+.booking{background:var(--deep);padding:64px 24px;text-align:center;position:relative;overflow:hidden;}
+.booking::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 50%,rgba(201,168,76,.055) 0%,transparent 70%);}
+.booking-inner{position:relative;z-index:1;}
 .booking .eyebrow{justify-content:center;}
 .booking .eyebrow::before{display:none;}
-.booking-h{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,5.5vw,76px);font-weight:300;line-height:.95;color:var(--cream);margin:18px 0 22px;}
+.booking-h{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,10vw,56px);font-weight:300;line-height:.95;color:var(--cream);margin:14px 0 16px;}
 .booking-h em{font-style:italic;color:var(--gold-light);}
-.booking-sub{font-size:13.5px;line-height:1.9;color:var(--muted);max-width:440px;margin:0 auto 54px;}
-.btns{display:flex;gap:16px;justify-content:center;align-items:center;}
-.btn-wa{font-size:8.5px;letter-spacing:3px;text-transform:uppercase;color:#fff;background:#1FAD53;padding:18px 44px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:background .3s;}
-.btn-wa:hover{background:#189045;}
-.bphone{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:300;color:var(--cream);margin:60px 0 0;display:block;letter-spacing:2px;text-decoration:none;line-height:1;}
+.booking-sub{font-size:13px;line-height:1.9;color:var(--muted);margin-bottom:32px;}
+.btns{display:flex;flex-direction:column;gap:10px;}
+.btn-wa{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:#fff;background:#1FAD53;padding:18px 24px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .3s;}
+.btn-wa:active{background:#189045;}
+.bphone{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,8vw,38px);font-weight:300;color:var(--cream);margin:44px 0 0;display:block;letter-spacing:1px;text-decoration:none;line-height:1;}
 .bphone span{color:var(--gold);}
-
-/* FORM */
-.bform{background:var(--charcoal);border:1px solid rgba(201,168,76,.1);padding:56px;margin-top:80px;text-align:left;}
-.bform-h{margin-bottom:40px;}
-.bform-h .eyebrow{margin-bottom:12px;}
-.bform-h h3{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--cream);}
+.bform{background:var(--charcoal);border:1px solid rgba(201,168,76,.1);padding:30px 18px;margin-top:48px;text-align:left;}
+.bform-h{margin-bottom:26px;}
+.bform-h .eyebrow{margin-bottom:10px;}
+.bform-h h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--cream);}
 .bform-h h3 em{font-style:italic;color:var(--gold-light);}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.fgrid{display:flex;flex-direction:column;gap:14px;}
 .fg{display:flex;flex-direction:column;gap:7px;}
-.fg.full{grid-column:1/-1;}
 .fg label{font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
-.fg input,.fg select,.fg textarea{background:var(--deep);border:1px solid rgba(201,168,76,.14);color:var(--cream);padding:14px 16px;font-family:'Jost',sans-serif;font-size:12.5px;font-weight:300;outline:none;transition:border-color .3s;width:100%;}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:rgba(201,168,76,.55);}
+.fg input,.fg select,.fg textarea{background:var(--deep);border:1px solid rgba(201,168,76,.14);color:var(--cream);padding:14px 14px;font-family:'Jost',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border-color .3s;width:100%;-webkit-appearance:none;border-radius:0;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:rgba(201,168,76,.5);}
 .fg select option{background:var(--deep);}
-.fg textarea{resize:vertical;min-height:96px;}
-.fsub{width:100%;background:var(--gold);border:none;color:var(--deep);padding:17px;font-family:'Jost',sans-serif;font-size:8.5px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:background .3s;margin-top:4px;}
-.fsub:hover{background:var(--gold-light);}
-.fsub:disabled{opacity:.55;cursor:wait;}
+.fg textarea{resize:vertical;min-height:90px;}
+.fsub{width:100%;background:var(--gold);border:none;color:var(--deep);padding:18px;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:background .3s;margin-top:4px;border-radius:0;}
+.fsub:active{background:var(--gold-light);}
 .fmsg{padding:14px;margin-top:12px;font-size:12px;display:none;text-align:center;}
 .fmsg.ok{background:rgba(201,168,76,.07);color:var(--gold-light);border:1px solid rgba(201,168,76,.2);}
 .fmsg.err{background:rgba(220,50,50,.07);color:#f09090;border:1px solid rgba(220,50,50,.18);}
-
-/* ── LOCATION ── */
-.location{display:grid;grid-template-columns:1fr 1fr;background:var(--charcoal);}
-.loc-l{padding:110px 72px;}
-.loc-r{background:var(--mid);display:flex;align-items:center;justify-content:center;min-height:520px;position:relative;overflow:hidden;}
-.loc-r::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(201,168,76,.04) 0%,transparent 70%);}
-/* decorative concentric rings */
-.loc-r::after{content:'';position:absolute;inset:0;
-  background:none;
-  box-shadow:inset 0 0 0 1px rgba(201,168,76,.06),inset 0 0 0 60px rgba(201,168,76,.02),inset 0 0 0 120px rgba(201,168,76,.015);
-}
-.map-box{text-align:center;position:relative;z-index:1;}
-.map-pin{font-size:56px;display:block;margin-bottom:16px;animation:pinFloat 2.8s ease-in-out infinite;}
-@keyframes pinFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-11px);}}
-.map-box p{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--cream);margin-bottom:14px;}
-.map-box a{font-size:8.5px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,.3);padding-bottom:3px;}
-.loc-items{margin-top:46px;}
-.loc-item{display:flex;gap:18px;align-items:flex-start;padding:20px 0;border-bottom:1px solid rgba(201,168,76,.07);}
+.location{background:var(--charcoal);padding:64px 24px;}
+.loc-items{margin-top:30px;}
+.loc-item{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-bottom:1px solid rgba(201,168,76,.07);}
 .loc-item:last-child{border-bottom:none;}
-.loc-ico{font-size:16px;color:var(--gold);flex-shrink:0;margin-top:4px;width:20px;}
+.loc-ico{font-size:15px;color:var(--gold);flex-shrink:0;margin-top:3px;width:20px;}
 .loc-text{font-size:13px;line-height:1.75;color:rgba(250,246,239,.52);}
-.loc-text strong{display:block;font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:rgba(250,246,239,.28);margin-bottom:5px;}
+.loc-text strong{display:block;font-size:7.5px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(250,246,239,.28);margin-bottom:5px;}
 .loc-text a{color:var(--gold);text-decoration:none;}
-
-/* ── FOOTER ── */
-footer{background:var(--deep);padding:90px 72px 44px;border-top:1px solid rgba(201,168,76,.08);}
-.footer-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:60px;margin-bottom:72px;}
-.fbrand .nav-logo{font-size:24px;display:block;margin-bottom:18px;}
-.fbrand p{font-size:12px;line-height:1.95;color:var(--dim);}
-.fcol h5{font-size:7.5px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;}
+.map-box{background:var(--mid);margin-top:32px;padding:44px 20px;text-align:center;border:1px solid rgba(201,168,76,.08);position:relative;overflow:hidden;}
+.map-box::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(201,168,76,.04) 0%,transparent 70%);}
+.map-pin{font-size:40px;display:block;margin-bottom:14px;animation:pinFloat 2.8s ease-in-out infinite;position:relative;z-index:1;}
+@keyframes pinFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.map-box p{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;color:var(--cream);margin-bottom:12px;position:relative;z-index:1;}
+.map-box a{font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,.3);padding-bottom:3px;position:relative;z-index:1;}
+footer{background:var(--deep);padding:52px 24px 36px;border-top:1px solid rgba(201,168,76,.08);}
+.footer-brand{margin-bottom:34px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;letter-spacing:4px;color:var(--gold-light);text-transform:uppercase;display:block;margin-bottom:12px;text-decoration:none;}
+.footer-brand p{font-size:12px;line-height:1.9;color:var(--dim);}
+.footer-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:34px;}
+.fcol h5{font-size:7.5px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
 .fcol ul{list-style:none;}
-.fcol li{font-size:12px;color:var(--dim);margin-bottom:11px;cursor:pointer;transition:color .3s;}
-.fcol li:hover{color:var(--gold-light);}
-.footer-btm{display:flex;justify-content:space-between;align-items:center;padding-top:30px;border-top:1px solid rgba(201,168,76,.06);font-size:10px;color:rgba(250,246,239,.18);letter-spacing:1px;}
-.fsoc a{font-size:10px;letter-spacing:2px;color:rgba(250,246,239,.28);text-decoration:none;margin-left:20px;transition:color .3s;}
-.fsoc a:hover{color:var(--gold);}
+.fcol li{font-size:12px;color:var(--dim);margin-bottom:8px;}
+.footer-btm{padding-top:20px;border-top:1px solid rgba(201,168,76,.06);display:flex;flex-direction:column;gap:10px;}
+.footer-btm p{font-size:9px;color:rgba(250,246,239,.18);letter-spacing:1px;}
+.fsoc{display:flex;gap:18px;}
+.fsoc a{font-size:9px;letter-spacing:2px;color:rgba(250,246,239,.28);text-decoration:none;}
+
+@media(min-width:768px){
+  nav{padding:0 48px;height:70px;}
+  .nav-logo{font-size:17px;}
+  .nav-logo span{display:none;}
+  .hamburger{display:none;}
+  .mobile-drawer{display:none !important;}
+  .nav-menu{display:flex;gap:32px;list-style:none;}
+  .nav-menu a{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(250,246,239,.55);text-decoration:none;transition:color .3s;position:relative;padding-bottom:3px;}
+  .nav-menu a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .4s;}
+  .nav-menu a:hover{color:var(--gold-light);}
+  .nav-menu a:hover::after{width:100%;}
+  .nav-book{display:block;}
+  .hero{padding:100px 48px 72px;}
+  .hero-h1{font-size:clamp(64px,10vw,100px);}
+  .hero-ctas{flex-direction:row;width:auto;}
+  .hero-stats{max-width:400px;}
+  .about{padding:96px 48px;}
+  .about-layout{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+  .astat-grid{margin-top:0;}
+  .services{padding:96px 48px;}
+  .svc-grid{grid-template-columns:1fr 1fr;}
+  .hours-why{display:grid;grid-template-columns:1fr 1fr;}
+  .hours-sec,.why-sec{padding:96px 48px;}
+  .testi{padding:96px 48px;}
+  .tgrid{flex-direction:row;}
+  .tcard{flex:1;}
+  .booking{padding:96px 48px;}
+  .btns{flex-direction:row;justify-content:center;}
+  .bform{padding:44px 40px;}
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .fg.full{grid-column:1/-1;}
+  .location{padding:96px 48px;}
+  .location-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+  .map-box{margin-top:0;}
+  footer{padding:72px 48px 40px;}
+  .footer-grid{display:grid;grid-template-columns:1fr 2fr;gap:56px;}
+  .footer-brand{margin-bottom:0;}
+  .footer-cols{grid-template-columns:repeat(3,1fr);gap:36px;}
+  .footer-btm{flex-direction:row;justify-content:space-between;align-items:center;}
+}
 </style>
 </head>
 <body>
 
-<div class="cur" id="cur"></div>
-<div class="cur-ring" id="ring"></div>
-
-<!-- NAV -->
 <nav id="nav">
-  <a class="nav-logo" href="#">Neha Ahluwalia</a>
-  <ul class="nav-links">
+  <a class="nav-logo" href="#">Neha Ahluwalia<span>Luxury Makeup Studio</span></a>
+  <ul class="nav-menu">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#numbers">Studio</a></li>
     <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact">Book</a></li>
+    <li><a href="#location">Contact</a></li>
   </ul>
-  <a class="nav-cta" href="#contact"><span>Book Now</span></a>
+  <div class="nav-right">
+    <a href="#contact" class="nav-book">Book Now</a>
+    <button class="hamburger" id="ham" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-vlines"><span></span><span></span></div>
-  <div class="hero-monogram">NA</div>
+<div class="mobile-drawer" id="drawer">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#testimonials" onclick="closeMenu()">Reviews</a>
+  <a href="#location" onclick="closeMenu()">Find Us</a>
+  <a href="#contact" class="md-book" onclick="closeMenu()">Book Appointment</a>
+</div>
+
+<section class="hero" id="home">
+  <div class="hero-mono">NA</div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Luxury Makeup Studio &amp; Salon &nbsp;·&nbsp; Kurukshetra</div>
-    <h1 class="hero-h1">Where Beauty<br><em>Becomes Art</em></h1>
-    <p class="hero-sub">Kurukshetra &nbsp;·&nbsp; Karnal &nbsp;·&nbsp; Chandigarh<br>Crafting timeless looks for your most precious moments</p>
-    <div class="hero-ctas">
-      <a href="#contact" class="btn-main"><span>Book an Appointment</span></a>
-      <a href="#about" class="btn-ghost">Discover More <span class="a">→</span></a>
+    <div class="hero-eyebrow rv">Luxury Makeup Studio &amp; Salon · Kurukshetra</div>
+    <h1 class="hero-h1 rv d1">Where<br>Beauty<br><em>Becomes Art</em></h1>
+    <p class="hero-sub rv d2">Kurukshetra · Karnal · Chandigarh<br>Crafting timeless looks for your most precious moments</p>
+    <div class="hero-ctas rv d3">
+      <a href="#contact" class="btn-main">Book an Appointment</a>
+      <a href="https://instagram.com/nehaahluwaliaartistry" target="_blank" class="btn-ghost">View Portfolio →</a>
     </div>
   </div>
-  <div class="hero-stats">
-    <div class="hero-stats-inner">
-      <div class="hstat"><span class="hstat-n">36K+</span><span class="hstat-l">Followers</span></div>
-      <div class="hstat"><span class="hstat-n">1561+</span><span class="hstat-l">Posts</span></div>
-      <div class="hstat"><span class="hstat-n">10+</span><span class="hstat-l">Years</span></div>
-    </div>
+  <div class="hero-stats rv">
+    <div class="hstat"><span class="hstat-n">36K+</span><span class="hstat-l">Followers</span></div>
+    <div class="hstat"><span class="hstat-n">1561+</span><span class="hstat-l">Posts</span></div>
+    <div class="hstat"><span class="hstat-n">10+</span><span class="hstat-l">Years</span></div>
   </div>
-  <div class="hero-scroll"><div class="hero-scroll-line"></div><span>Scroll</span></div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker"><div class="ticker-track">
-  <span class="ti">Bridal Makeup</span><span class="ti ts">✦</span>
-  <span class="ti">Hair Styling</span><span class="ti ts">✦</span>
-  <span class="ti">Luxury Facials</span><span class="ti ts">✦</span>
-  <span class="ti">Party Glam</span><span class="ti ts">✦</span>
-  <span class="ti">Nail Art</span><span class="ti ts">✦</span>
-  <span class="ti">Airbrush Makeup</span><span class="ti ts">✦</span>
-  <span class="ti">Mehendi</span><span class="ti ts">✦</span>
-  <span class="ti">Skin &amp; Body Care</span><span class="ti ts">✦</span>
-  <span class="ti">Bridal Makeup</span><span class="ti ts">✦</span>
-  <span class="ti">Hair Styling</span><span class="ti ts">✦</span>
-  <span class="ti">Luxury Facials</span><span class="ti ts">✦</span>
-  <span class="ti">Party Glam</span><span class="ti ts">✦</span>
-  <span class="ti">Nail Art</span><span class="ti ts">✦</span>
-  <span class="ti">Airbrush Makeup</span><span class="ti ts">✦</span>
-  <span class="ti">Mehendi</span><span class="ti ts">✦</span>
-  <span class="ti">Skin &amp; Body Care</span><span class="ti ts">✦</span>
-</div></div>
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ti">Bridal Makeup</span><span class="ti ts">✦</span>
+    <span class="ti">Hair Styling</span><span class="ti ts">✦</span>
+    <span class="ti">Luxury Facials</span><span class="ti ts">✦</span>
+    <span class="ti">Party Glam</span><span class="ti ts">✦</span>
+    <span class="ti">Nail Art</span><span class="ti ts">✦</span>
+    <span class="ti">Airbrush Makeup</span><span class="ti ts">✦</span>
+    <span class="ti">Mehendi</span><span class="ti ts">✦</span>
+    <span class="ti">Skin &amp; Body Care</span><span class="ti ts">✦</span>
+    <span class="ti">Bridal Makeup</span><span class="ti ts">✦</span>
+    <span class="ti">Hair Styling</span><span class="ti ts">✦</span>
+    <span class="ti">Luxury Facials</span><span class="ti ts">✦</span>
+    <span class="ti">Party Glam</span><span class="ti ts">✦</span>
+    <span class="ti">Nail Art</span><span class="ti ts">✦</span>
+    <span class="ti">Airbrush Makeup</span><span class="ti ts">✦</span>
+    <span class="ti">Mehendi</span><span class="ti ts">✦</span>
+    <span class="ti">Skin &amp; Body Care</span><span class="ti ts">✦</span>
+  </div>
+</div>
 
-<!-- ABOUT -->
 <section class="about" id="about">
-  <div class="about-deco">NA</div>
+  <div class="about-mono">NA</div>
   <div class="about-layout">
     <div class="about-left">
       <div class="eyebrow rv">The Artist</div>
       <h2 class="sh rv d1">A Studio Born<br>From <em>Passion</em></h2>
-      <p class="rv d2" style="margin-top:28px;">Neha Ahluwalia is one of Haryana's most celebrated makeup artists and beauty influencers — Instagram verified, with over 36K followers who trust her artistry and vision every single day.</p>
+      <p class="rv d2">Neha Ahluwalia is one of Haryana's most celebrated makeup artists and beauty influencers — Instagram verified, with over 36K followers who trust her artistry every single day.</p>
       <p class="rv d2">From intimate bridal appointments to high-fashion editorial looks, every session is a completely bespoke experience. Neha personally oversees every look so you always leave feeling extraordinary.</p>
-      <p class="rv d3">Serving brides and clients across Kurukshetra, Karnal and Chandigarh, she has built a reputation for flawless, long-lasting artistry that celebrates your natural beauty.</p>
       <div class="about-badges rv d3">
         <span class="badge">✓ Instagram Verified</span>
-        <span class="badge">Makeup Artist</span>
-        <span class="badge">Influencer</span>
-        <span class="badge">Traveller</span>
-        <span class="badge">Kurukshetra</span>
-        <span class="badge">Karnal · Chandigarh</span>
+        <span class="badge">Master Makeup Artist</span>
+        <span class="badge">Influencer · 36K+</span>
+        <span class="badge">Kurukshetra · Karnal · Chandigarh</span>
       </div>
     </div>
     <div class="about-right rv d2">
@@ -375,40 +318,32 @@ footer{background:var(--deep);padding:90px 72px 44px;border-top:1px solid rgba(2
 
 <div class="gold-line"></div>
 
-<!-- SERVICES -->
 <section class="services" id="services">
-  <div class="svc-head">
-    <div>
-      <div class="eyebrow rv">What We Offer</div>
-      <h2 class="sh rv d1">Our <em>Services</em></h2>
-    </div>
-    <a href="#contact" class="btn-ghost rv">Enquire Now <span class="a">→</span></a>
-  </div>
+  <div class="eyebrow rv">What We Offer</div>
+  <h2 class="sh rv d1">Our <em>Services</em></h2>
   <div class="svc-grid">
-    <div class="svc rv"><div class="svc-num">01</div><span class="svc-icon">💍</span><div class="svc-name">Bridal Makeup</div><p class="svc-desc">A bespoke bridal look from mehndi to reception — crafted with precision to tell your story with elegance and timeless beauty.</p><div class="svc-arr">→</div></div>
-    <div class="svc rv d1"><div class="svc-num">02</div><span class="svc-icon">✂️</span><div class="svc-name">Hair Styling</div><p class="svc-desc">Intricate braids, glamorous blowouts, and everything in between — styled by expert hands for every occasion.</p><div class="svc-arr">→</div></div>
-    <div class="svc rv d2"><div class="svc-num">03</div><span class="svc-icon">✨</span><div class="svc-name">Luxury Facials</div><p class="svc-desc">Advanced skincare treatments using premium products to reveal your most radiant, glowing complexion.</p><div class="svc-arr">→</div></div>
-    <div class="svc rv d1"><div class="svc-num">04</div><span class="svc-icon">🌟</span><div class="svc-name">Party Glam</div><p class="svc-desc">Show-stopping looks for sangeets, cocktail nights, and special occasions that demand you stand out beautifully.</p><div class="svc-arr">→</div></div>
-    <div class="svc rv d2"><div class="svc-num">05</div><span class="svc-icon">💅</span><div class="svc-name">Nail Art</div><p class="svc-desc">Exquisite nail artistry — from minimalist elegance to intricate designs. Your nails, your statement.</p><div class="svc-arr">→</div></div>
-    <div class="svc rv d3"><div class="svc-num">06</div><span class="svc-icon">🌿</span><div class="svc-name">Skin &amp; Body Care</div><p class="svc-desc">Indulgent waxing, threading, and body treatments performed in our serene, private luxury studio space.</p><div class="svc-arr">→</div></div>
+    <div class="svc rv"><div class="svc-top"><div class="svc-num">01</div><span class="svc-icon">💍</span><div class="svc-name">Bridal Makeup</div></div><p class="svc-desc">A bespoke bridal look from mehndi to reception — crafted with precision and timeless elegance.</p></div>
+    <div class="svc rv d1"><div class="svc-top"><div class="svc-num">02</div><span class="svc-icon">✂️</span><div class="svc-name">Hair Styling</div></div><p class="svc-desc">Intricate braids, glamorous blowouts, and everything in between for every occasion.</p></div>
+    <div class="svc rv d2"><div class="svc-top"><div class="svc-num">03</div><span class="svc-icon">✨</span><div class="svc-name">Luxury Facials</div></div><p class="svc-desc">Advanced skincare treatments using premium products for your most radiant glow.</p></div>
+    <div class="svc rv"><div class="svc-top"><div class="svc-num">04</div><span class="svc-icon">🌟</span><div class="svc-name">Party Glam</div></div><p class="svc-desc">Show-stopping looks for sangeets, cocktail nights, and special occasions.</p></div>
+    <div class="svc rv d1"><div class="svc-top"><div class="svc-num">05</div><span class="svc-icon">💅</span><div class="svc-name">Nail Art</div></div><p class="svc-desc">Exquisite nail artistry from minimalist elegance to intricate designs.</p></div>
+    <div class="svc rv d2"><div class="svc-top"><div class="svc-num">06</div><span class="svc-icon">🌿</span><div class="svc-name">Skin &amp; Body Care</div></div><p class="svc-desc">Indulgent waxing, threading, and body treatments in our private studio.</p></div>
   </div>
 </section>
 
-<!-- NUMBERS -->
-<section id="numbers" style="background:var(--panel);">
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);">
-    <div class="num-item rv"><div class="num-n">36K+</div><div class="num-l">Instagram Followers</div></div>
-    <div class="num-item rv d1"><div class="num-n">1561+</div><div class="num-l">Posts &amp; Reels</div></div>
-    <div class="num-item rv d2"><div class="num-n">10+</div><div class="num-l">Years Experience</div></div>
-    <div class="num-item rv d3"><div class="num-n">3</div><div class="num-l">Cities Served</div></div>
+<section class="nums">
+  <div class="nums-grid">
+    <div class="num-item rv"><span class="num-n">36K+</span><span class="num-l">Instagram Followers</span></div>
+    <div class="num-item rv d1"><span class="num-n">1561+</span><span class="num-l">Posts &amp; Reels</span></div>
+    <div class="num-item rv d2"><span class="num-n">10+</span><span class="num-l">Years Experience</span></div>
+    <div class="num-item rv d3"><span class="num-n">3</span><span class="num-l">Cities Served</span></div>
   </div>
 </section>
 
-<!-- SPLIT: HOURS + WHY -->
-<section class="split">
-  <div class="split-l">
+<div class="hours-why">
+  <section class="hours-sec">
     <div class="eyebrow rv">Studio Hours</div>
-    <h2 class="sh rv d1" style="font-size:clamp(32px,3.5vw,50px);">When to <em>Visit</em></h2>
+    <h2 class="sh rv d1" style="font-size:clamp(26px,7vw,40px);">When to <em>Visit</em></h2>
     <div class="hours rv d2">
       <div class="hrow"><span>Monday</span><span>9:00 AM – 8:00 PM</span></div>
       <div class="hrow closed"><span>Tuesday</span><span>Closed</span></div>
@@ -418,45 +353,41 @@ footer{background:var(--deep);padding:90px 72px 44px;border-top:1px solid rgba(2
       <div class="hrow"><span>Saturday</span><span>9:00 AM – 8:00 PM</span></div>
       <div class="hrow"><span>Sunday</span><span>9:00 AM – 8:00 PM</span></div>
     </div>
-  </div>
-  <div class="split-r">
+  </section>
+  <section class="why-sec">
     <div class="eyebrow rv">Why Choose Us</div>
-    <h2 class="sh rv d1" style="font-size:clamp(32px,3.5vw,50px);">Why <em>Neha Ahluwalia?</em></h2>
-    <p class="rv d2">Every client deserves to feel like the most beautiful version of themselves. We blend artistry with luxury.</p>
+    <h2 class="sh rv d1" style="font-size:clamp(26px,7vw,40px);">Why <em>Neha Ahluwalia?</em></h2>
+    <p class="rv d2">Every client deserves to feel like the most beautiful version of themselves.</p>
     <div class="whys rv d3">
-      <div class="why"><div class="why-ico">✦</div><div class="why-text"><h4>Premium Products Only</h4><p>Top international brands used for every service</p></div></div>
+      <div class="why"><div class="why-ico">✦</div><div class="why-text"><h4>Premium Products Only</h4><p>Top international brands for every service</p></div></div>
       <div class="why"><div class="why-ico">✦</div><div class="why-text"><h4>Verified Master Artist</h4><p>Instagram verified · 36K+ loyal followers</p></div></div>
-      <div class="why"><div class="why-ico">✦</div><div class="why-text"><h4>Private, Luxe Space</h4><p>Bespoke studio designed for comfort &amp; glamour</p></div></div>
-      <div class="why"><div class="why-ico">✦</div><div class="why-text"><h4>Personalized Service</h4><p>Every single look is tailored specifically to you</p></div></div>
+      <div class="why"><div class="why-ico">✦</div><div class="why-text"><h4>Private, Luxe Space</h4><p>Bespoke studio for comfort &amp; glamour</p></div></div>
+      <div class="why"><div class="why-ico">✦</div><div class="why-text"><h4>Personalized Service</h4><p>Every look tailored specifically to you</p></div></div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
-<!-- TESTIMONIALS -->
 <section class="testi" id="testimonials">
-  <div class="testi-head">
-    <div class="eyebrow rv">Client Love</div>
-    <h2 class="sh rv d1">Words That <em>Inspire</em> Us</h2>
-  </div>
+  <div class="eyebrow rv" style="justify-content:center;">Client Love</div>
+  <h2 class="sh rv d1" style="text-align:center;">Words That <em>Inspire</em> Us</h2>
   <div class="tgrid">
-    <div class="tcard rv"><div class="tcard-stars">★★★★★</div><p class="tcard-text">"Neha made me feel like an absolute queen on my wedding day. My bridal look was everything I dreamed of and more."</p><div class="tcard-author">Priya Sharma — Bride</div></div>
-    <div class="tcard rv d2"><div class="tcard-stars">★★★★★</div><p class="tcard-text">"The studio is stunning. The ambiance, the service, the attention to detail — truly a luxury experience unlike any other in Kurukshetra."</p><div class="tcard-author">Ananya Kapoor — Client</div></div>
-    <div class="tcard rv d3"><div class="tcard-stars">★★★★★</div><p class="tcard-text">"My sangeet look was so perfect that everyone kept asking who did my makeup. Neha's work is genuinely art."</p><div class="tcard-author">Rhea Malhotra — Bride</div></div>
+    <div class="tcard rv"><div class="tcard-stars">★★★★★</div><p class="tcard-text">"Neha made me feel like an absolute queen on my wedding day. My bridal look was everything I dreamed of."</p><div class="tcard-author">Priya Sharma — Bride</div></div>
+    <div class="tcard rv d1"><div class="tcard-stars">★★★★★</div><p class="tcard-text">"The studio, the service, the attention to detail — truly a luxury experience unlike any other in Kurukshetra."</p><div class="tcard-author">Ananya Kapoor — Client</div></div>
+    <div class="tcard rv d2"><div class="tcard-stars">★★★★★</div><p class="tcard-text">"My sangeet look was so perfect that everyone kept asking who did my makeup. Neha's work is genuinely art."</p><div class="tcard-author">Rhea Malhotra — Bride</div></div>
   </div>
 </section>
 
-<!-- BOOKING -->
 <section class="booking" id="contact">
   <div class="booking-inner">
     <div class="eyebrow rv">Let's Create Magic</div>
     <h2 class="booking-h rv d1">Ready to Look<br><em>Extraordinary?</em></h2>
-    <p class="booking-sub rv d2">Book your appointment below or reach us directly. Limited slots — reserve yours now.</p>
+    <p class="booking-sub rv d2">Book your appointment below or reach us directly.<br>Limited slots — reserve yours now.</p>
     <div class="btns rv d3">
       <a href="https://wa.me/917082256996" target="_blank" class="btn-wa">✆ &nbsp;Chat on WhatsApp</a>
-      <a href="tel:+917082256996" class="btn-main"><span>Call to Book</span></a>
+      <a href="tel:+917082256996" class="btn-main">Call to Book</a>
     </div>
-    <a href="tel:+917082256996" class="bphone rv d4">+91 <span>70822 56996</span></a>
-    <div class="bform rv d3">
+    <a href="tel:+917082256996" class="bphone rv d3">+91 <span>70822 56996</span></a>
+    <div class="bform rv d2">
       <div class="bform-h">
         <div class="eyebrow">Online Appointment</div>
         <h3><em>Request a Booking</em></h3>
@@ -481,7 +412,7 @@ footer{background:var(--deep);padding:90px 72px 44px;border-top:1px solid rgba(2
             <option>6:00 PM</option><option>7:00 PM</option>
           </select>
         </div>
-        <div class="fg full"><label>Special Requests</label><textarea id="bMsg" placeholder="Any notes, special requirements, or questions..."></textarea></div>
+        <div class="fg full"><label>Special Requests</label><textarea id="bMsg" placeholder="Any notes or special requirements..."></textarea></div>
         <div class="fg full"><button class="fsub" id="fsub" onclick="submitBooking()">Submit Booking Request</button></div>
       </div>
       <div class="fmsg" id="fmsg"></div>
@@ -489,20 +420,19 @@ footer{background:var(--deep);padding:90px 72px 44px;border-top:1px solid rgba(2
   </div>
 </section>
 
-<!-- LOCATION -->
 <section class="location" id="location">
-  <div class="loc-l">
-    <div class="eyebrow rv">Find Us</div>
-    <h2 class="sh rv d1">Visit the <em>Studio</em></h2>
-    <div class="loc-items rv d2">
-      <div class="loc-item"><div class="loc-ico">📍</div><div class="loc-text"><strong>Address</strong>SCO-54, Sector-7 Main Market Rd, Urban Estate, Sector 7, Kurukshetra, Haryana 136118</div></div>
-      <div class="loc-item"><div class="loc-ico">📞</div><div class="loc-text"><strong>Phone / WhatsApp</strong>+91 70822 56996</div></div>
-      <div class="loc-item"><div class="loc-ico">🕐</div><div class="loc-text"><strong>Hours</strong>Mon, Wed–Sun: 9:00 AM – 8:00 PM &nbsp;|&nbsp; Tuesday: Closed</div></div>
-      <div class="loc-item"><div class="loc-ico">📸</div><div class="loc-text"><strong>Instagram</strong><a href="https://instagram.com/nehaahluwaliaartistry" target="_blank">@nehaahluwaliaartistry ↗</a></div></div>
+  <div class="location-inner">
+    <div>
+      <div class="eyebrow rv">Find Us</div>
+      <h2 class="sh rv d1">Visit the <em>Studio</em></h2>
+      <div class="loc-items rv d2">
+        <div class="loc-item"><div class="loc-ico">📍</div><div class="loc-text"><strong>Address</strong>SCO-54, Sector-7 Main Market Rd, Urban Estate, Sector 7, Kurukshetra, Haryana 136118</div></div>
+        <div class="loc-item"><div class="loc-ico">📞</div><div class="loc-text"><strong>Phone / WhatsApp</strong>+91 70822 56996</div></div>
+        <div class="loc-item"><div class="loc-ico">🕐</div><div class="loc-text"><strong>Hours</strong>Mon, Wed–Sun: 9:00 AM – 8:00 PM<br>Tuesday: Closed</div></div>
+        <div class="loc-item"><div class="loc-ico">📸</div><div class="loc-text"><strong>Instagram</strong><a href="https://instagram.com/nehaahluwaliaartistry" target="_blank">@nehaahluwaliaartistry ↗</a></div></div>
+      </div>
     </div>
-  </div>
-  <div class="loc-r">
-    <div class="map-box">
+    <div class="map-box rv d2">
       <span class="map-pin">📍</span>
       <p>Sector 7, Kurukshetra</p>
       <a href="https://maps.google.com/?q=SCO-54+Sector+7+Kurukshetra+Haryana" target="_blank">Get Directions →</a>
@@ -512,13 +442,18 @@ footer{background:var(--deep);padding:90px 72px 44px;border-top:1px solid rgba(2
 
 <footer>
   <div class="footer-grid">
-    <div class="fbrand"><a class="nav-logo" href="#">Neha Ahluwalia</a><p>Luxury Makeup Studio &amp; Salon<br>Kurukshetra, Haryana<br><br>Artistry. Elegance. You.</p></div>
-    <div class="fcol"><h5>Services</h5><ul><li>Bridal Makeup</li><li>Hair Styling</li><li>Luxury Facials</li><li>Nail Art</li><li>Party Glam</li></ul></div>
-    <div class="fcol"><h5>Studio</h5><ul><li>About Neha</li><li>Portfolio</li><li>Testimonials</li><li onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book Appointment</li></ul></div>
-    <div class="fcol"><h5>Contact</h5><ul><li>+91 70822 56996</li><li>Kurukshetra</li><li>Karnal · Chandigarh</li><li>Tuesday: Closed</li></ul></div>
+    <div class="footer-brand">
+      <a class="footer-logo" href="#">Neha Ahluwalia</a>
+      <p>Luxury Makeup Studio &amp; Salon<br>Kurukshetra, Haryana<br><br>Artistry. Elegance. You.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="fcol"><h5>Services</h5><ul><li>Bridal Makeup</li><li>Hair Styling</li><li>Luxury Facials</li><li>Nail Art</li><li>Party Glam</li></ul></div>
+      <div class="fcol"><h5>Studio</h5><ul><li>About Neha</li><li>Portfolio</li><li>Testimonials</li><li>Book Appointment</li></ul></div>
+      <div class="fcol"><h5>Contact</h5><ul><li>+91 70822 56996</li><li>Kurukshetra</li><li>Karnal · Chandigarh</li><li>Tuesday: Closed</li></ul></div>
+    </div>
   </div>
   <div class="footer-btm">
-    <span>© 2026 Neha Ahluwalia Artistry. All rights reserved.</span>
+    <p>© 2026 Neha Ahluwalia Artistry. All rights reserved.</p>
     <div class="fsoc">
       <a href="https://instagram.com/nehaahluwaliaartistry" target="_blank">Instagram</a>
       <a href="https://wa.me/917082256996" target="_blank">WhatsApp</a>
@@ -527,23 +462,20 @@ footer{background:var(--deep);padding:90px 72px 44px;border-top:1px solid rgba(2
 </footer>
 
 <script>
-// Cursor
-const cur=document.getElementById('cur'),ring=document.getElementById('ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-(function a(){cur.style.left=mx+'px';cur.style.top=my+'px';rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
-document.querySelectorAll('a,button').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(2)';ring.style.borderColor='rgba(201,168,76,.7)';});
-  el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(201,168,76,.45)';});
-});
-// Nav
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>60));
-// Reveal
-const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{threshold:.1});
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{threshold:.08});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-// Date
 document.getElementById('bDate').min=new Date().toISOString().split('T')[0];
-// Submit
+function toggleMenu(){
+  document.getElementById('ham').classList.toggle('open');
+  document.getElementById('drawer').classList.toggle('open');
+  document.body.style.overflow=document.getElementById('drawer').classList.contains('open')?'hidden':'';
+}
+function closeMenu(){
+  document.getElementById('ham').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+  document.body.style.overflow='';
+}
 async function submitBooking(){
   const name=document.getElementById('bName').value.trim();
   const phone=document.getElementById('bPhone').value.trim();
