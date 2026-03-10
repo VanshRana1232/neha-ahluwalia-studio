@@ -5,8 +5,11 @@ from datetime import datetime
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import os
 
-app = Flask(__name__, static_folder='../public', static_url_path='')
+app = Flask(__name__, 
+    static_folder=os.path.join(os.path.dirname(__file__), 'public'),
+    static_url_path='')
 app.secret_key = secrets.token_hex(32)
 CORS(app, supports_credentials=True)
 
