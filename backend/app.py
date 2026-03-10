@@ -298,7 +298,8 @@ def admin_stats():
 
 if __name__ == '__main__':
     init_db()
-    print("✨ Neha Ahluwalia Artistry — Backend running at http://localhost:5000")
-    print("   Admin panel: http://localhost:5000/admin.html")
+    print("✨ Neha Ahluwalia Artistry — Backend running")
+    print("   Admin panel: /admin.html")
     print("   Default admin password: admin@neha2026")
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
